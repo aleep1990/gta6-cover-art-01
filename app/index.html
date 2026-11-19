@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Lab — make your own sunset cover art</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand"><span class="brand-mark">VCL</span> Vice Cover Lab</div>
+  <p class="tagline">Turn your photos into a bold multi-panel sunset cover — right in the browser, no upload.</p>
+</header>
+<main class="app">
+  <section class="controls" aria-label="Cover controls">
+    <h2>1 · Photos <span class="hint">click a panel, then pick a photo</span></h2>
+    <div class="slots" id="slots"></div>
+    <label class="file-label">Upload photos (up to 4)
+      <input id="upload" type="file" accept="image/*" multiple>
+    </label>
+    <button id="load-samples" type="button" class="ghost">Load the 4 sample photos</button>
+
+    <h2>2 · Layout</h2>
+    <div class="chips" id="layouts" role="group" aria-label="Layout"></div>
+
+    <h2>3 · Colour grade</h2>
+    <div class="chips grades" id="grades" role="group" aria-label="Colour grade"></div>
+
+    <h2>4 · Words</h2>
+    <label>Title
+      <input id="title" type="text" maxlength="28" value="Neon Boulevard">
+    </label>
+    <label>Subtitle
+      <input id="subtitle" type="text" maxlength="40" value="chasing the sunset">
+    </label>
+    <label class="check"><input id="gradient-title" type="checkbox" checked> Sunset-gradient title fill</label>
+    <label class="check"><input id="grain" type="checkbox" checked> Film grain</label>
+    <label class="check"><input id="vignette" type="checkbox" checked> Vignette</label>
+    <label>Heat <span id="heat-value">5 / 5</span>
+      <input id="heat" type="range" min="1" max="5" step="1" value="5">
+    </label>
+
+    <h2>5 · Crop the selected panel</h2>
+    <label>Zoom <span id="zoom-value">100%</span>
+      <input id="zoom" type="range" min="100" max="300" step="5" value="100">
+    </label>
+    <p class="hint">Drag on the preview to move the photo inside its panel. Scroll over it to zoom.</p>
+
+    <div class="row">
+      <button id="undo" type="button" class="ghost">Undo</button>
+      <button id="redo" type="button" class="ghost">Redo</button>
+    </div>
+
+    <h2>6 · Export PNG</h2>
+    <label>Size
+      <select id="size">
+        <option value="square">Square 1080 x 1080</option>
+        <option value="portrait">Portrait 1080 x 1350</option>
+        <option value="landscape">Landscape 1920 x 1080</option>
+      </select>
+    </label>
+    <button id="export" type="button" class="primary">Export PNG</button>
+    <button id="export-all" type="button">Export all three sizes</button>
+    <p id="status" role="status"></p>
+    <p class="fine">Photos never leave your machine. Fonts are bundled under app/fonts. No accounts, no uploads.</p>
+  </section>
+  <section class="preview" aria-label="Live preview">
+    <canvas id="cover" width="1080" height="1080" aria-label="Live cover preview"></canvas>
+    <p class="preview-caption">Live preview — what you see is the PNG you get.</p>
+  </section>
+</main>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>

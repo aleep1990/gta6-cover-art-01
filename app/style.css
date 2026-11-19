@@ -1,0 +1,52 @@
+@font-face { font-family: "Anton"; src: url("./fonts/Anton-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Pacifico"; src: url("./fonts/Pacifico-Regular.ttf") format("truetype"); font-display: swap; }
+@font-face { font-family: "Bebas Neue"; src: url("./fonts/BebasNeue-Regular.ttf") format("truetype"); font-display: swap; }
+
+* { box-sizing: border-box; }
+html, body { margin: 0; min-height: 100%; background: #160a26; color: #f5eefc; font: 15px/1.45 system-ui, -apple-system, sans-serif; }
+.topbar { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 20px; padding: 18px 28px 6px; }
+.brand { font-family: "Anton", sans-serif; font-size: 30px; letter-spacing: 1px; color: #fff; }
+.brand-mark { display: inline-block; background: linear-gradient(135deg, #ffe259, #ff7e5f 55%, #ff2e88); color: #160a26; padding: 2px 10px; margin-right: 8px; border-radius: 4px; font-size: 24px; }
+.tagline { margin: 0; color: #c9a8e8; }
+.app { display: flex; gap: 28px; align-items: flex-start; padding: 18px 28px 32px; }
+.controls { width: 320px; flex: none; display: flex; flex-direction: column; gap: 10px; background: #22103a; border: 1px solid #3d2360; border-radius: 14px; padding: 18px; }
+.controls h2 { margin: 8px 0 2px; font-family: "Bebas Neue", sans-serif; font-size: 21px; letter-spacing: 2px; color: #ffd166; }
+.controls h2 .hint { font-family: system-ui, sans-serif; font-size: 12px; letter-spacing: 0; color: #c9a8e8; }
+label { display: flex; flex-direction: column; gap: 5px; font-weight: 600; font-size: 13px; }
+label.check { flex-direction: row; align-items: center; gap: 8px; font-weight: 500; }
+input[type=text], select { font: inherit; padding: 9px 10px; border: 1px solid #5b3a86; border-radius: 8px; background: #160a26; color: #fff; }
+input[type=range] { width: 100%; accent-color: #ff2e88; }
+button { font: inherit; font-weight: 700; padding: 11px 12px; border: 0; border-radius: 9px; background: #3d2360; color: #fff; cursor: pointer; }
+button:hover { filter: brightness(1.15); }
+button.primary { background: linear-gradient(135deg, #ff7e5f, #ff2e88); font-size: 16px; }
+button.ghost { background: transparent; border: 1px solid #5b3a86; }
+button.active { background: #ff2e88; }
+button:disabled { opacity: 0.45; cursor: default; }
+.file-label input { font-weight: 400; }
+.chips { display: flex; flex-wrap: wrap; gap: 7px; }
+.chips button { padding: 7px 10px; font-size: 13px; border-radius: 999px; }
+.slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.slot { border: 2px solid #5b3a86; border-radius: 8px; padding: 0; overflow: hidden; background: #160a26; aspect-ratio: 1; }
+.slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.slot.selected { border-color: #ff5e8a; box-shadow: 0 0 0 2px #ff5e8a; }
+.slot.empty { color: #8d6fb0; font-size: 24px; display: flex; align-items: center; justify-content: center; }
+.hint { margin: 0; font-size: 12.5px; color: #c9a8e8; }
+.row { display: flex; gap: 8px; }
+.row button { flex: 1; }
+#status { margin: 4px 0 0; min-height: 1.2em; color: #8dffb0; font-size: 13.5px; }
+.fine { margin: 0; font-size: 12px; color: #9c7fc4; }
+.preview { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 10px; min-width: 0; }
+.preview canvas { max-width: 100%; max-height: calc(100vh - 150px); background: #000; box-shadow: 0 18px 50px rgba(0, 0, 0, 0.55); border-radius: 4px; cursor: grab; touch-action: none; }
+.preview canvas:active { cursor: grabbing; }
+.preview-caption { margin: 0; color: #c9a8e8; font-size: 13px; }
+.grade-dot { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 6px; vertical-align: -1px; border: 1px solid rgba(255,255,255,0.5); }
+
+body.shot-cover .topbar, body.shot-cover .controls, body.shot-cover .preview-caption { display: none; }
+body.shot-cover .app { padding: 0; }
+body.shot-cover .preview { width: 100%; }
+body.shot-cover canvas { width: 100vw; height: 100vh; max-height: 100vh; box-shadow: none; border-radius: 0; }
+
+@media (max-width: 900px) {
+  .app { flex-direction: column; }
+  .controls { width: 100%; }
+}
