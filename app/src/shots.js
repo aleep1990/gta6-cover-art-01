@@ -1,32 +1,27 @@
 // Fixed scenes for screenshots.
-// ?shot=editor shows the editor with the sample photos loaded.
+// ?shot=editor shows the editor with the sample cast loaded.
 // ?shot=cover shows the cover alone, full-bleed in the viewport, at the
 // export size named by &size= (square, portrait or landscape).
-// Optional overrides: &layout= &grade= &title= &subtitle=.
-// window.__shotReady is set once the scene has painted with real fonts.
+// Optional overrides: &layout= &grade= &title= &subtitle= &tagline=
+// &quote= &titleStyle=.
+// window.__shotReady is set once the scene has painted with real fonts
+// and face-aware framing applied.
 export async function runShot(shot, query, hooks) {
   if (shot === 'cover') document.body.classList.add('shot-cover');
   await hooks.loadSamples();
   hooks.apply({
-    layout: query.get('layout') || undefined,
+    layout: query.get('layout') || 'cast',
     grade: query.get('grade') || undefined,
-    title: query.get('title') || undefined,
-    subtitle: query.get('subtitle') || undefined,
+    title: query.get('title') || 'Neon Tide',
+    subtitle: query.get('subtitle') || 'last light on the coast',
+    tagline: query.get('tagline') || undefined,
+    quote: query.get('quote') || undefined,
+    titleStyle: query.get('titleStyle') || 'chrome',
     size: query.get('size') || (shot === 'cover' ? 'landscape' : undefined),
   });
-  hooks.redraw();
-  // Cover scene, four-panel landscape: the top-left panel holds pier.jpg
-  // (slot 0), whose subject — the fisherman's face — sits at the top of
-  // the photo, where the default centred cover-fit crops it out (only
-  // chin/beard showed). Anchor that panel's crop to the top of the photo
-  // so the face is fully in frame. Scoped to this scene, size and layout
-  // so the editor scene and the other cover sizes keep their crops.
-  if (shot === 'cover'
-    && (query.get('size') || 'landscape') === 'landscape'
-    && (query.get('layout') || 'four') === 'four'
-    && hooks.anchorSlotTop) {
-    hooks.anchorSlotTop(0);
-  }
+  // Face-aware framing for the scene's own layout and size, so every
+  // face is fully in frame in every panel of the screenshot.
+  if (hooks.frameFaces) await hooks.frameFaces();
   hooks.redraw();
   try {
     await document.fonts.ready;
