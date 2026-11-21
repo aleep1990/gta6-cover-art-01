@@ -1,4 +1,5 @@
 // Development-only static server for Vice Cover Lab (Node 22, stdlib only).
+// Serves the Cast Edition app/ offline; no network.
 // Serves app/ on http://localhost:8080 so the entry can be tried locally
 // with no build step: `node serve.ts` (or `node serve.ts --port 8123`).
 import { createReadStream, statSync } from 'node:fs';
